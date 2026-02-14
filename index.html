@@ -441,7 +441,30 @@
             align-items: center;
             justify-content: center;
         }
-    </style>
+    
+
+        .header-action-btn{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            min-height: 40px;
+            border-radius: 10px;
+            background: #1f2a44;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            white-space: nowrap;
+        }
+
+        .header-action-btn:hover{
+            background: #141c2e;
+        }
+
+</style>
 </head>
 <body>
     <header class="header" id="header">
@@ -451,7 +474,9 @@
                     <h1 class="trip-title">🇨🇳 상하이 여행</h1>
                     <p class="trip-date">2025.2.16 (일) — 2.21 (금) · 5박 6일</p>
                 </div>
-            </div>
+            
+        <a class="header-action-btn" href="shanghai_itinerary_tables.html" target="_blank" rel="noopener">표로 보기</a>
+</div>
             <nav class="tab-nav" role="tablist">
                 <button class="tab-btn active" role="tab" data-day="1" aria-selected="true">
                     <span class="day-label">2/16 일</span>
