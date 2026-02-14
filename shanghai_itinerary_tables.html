@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>상하이 일정표 (DAY1~DAY6)</title>
+  <style>
+    :root {
+      --bg: #0b0c0f;
+      --text: #e9e9ef;
+      --muted: #a9afc3;
+      --grid2: rgba(255,255,255,.06);
+      --accent: #6ea8ff;
+      --accent2: rgba(110,168,255,.18);
+      --shadow: 0 8px 30px rgba(0,0,0,.35);
+      --radius: 14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background: radial-gradient(1000px 600px at 20% -10%, rgba(110,168,255,.18), transparent 60%),
+                  radial-gradient(800px 500px at 100% 10%, rgba(160,120,255,.12), transparent 55%),
+                  var(--bg);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .layout { display: grid; grid-template-columns: 310px 1fr; min-height: 100vh; }
+    .sidebar {
+      position: sticky; top: 0; align-self: start; height: 100vh;
+      padding: 18px 14px; box-sizing: border-box;
+      border-right: 1px solid var(--grid2);
+      background: linear-gradient(180deg, rgba(17,19,26,.88), rgba(17,19,26,.60));
+      backdrop-filter: blur(10px);
+    }
+    .brand {
+      display: flex; gap: 10px; align-items: center;
+      padding: 10px 12px;
+      border: 1px solid var(--grid2);
+      border-radius: var(--radius);
+      background: rgba(17,19,26,.6);
+      box-shadow: var(--shadow);
+    }
+    .dot { width: 10px; height: 10px; border-radius: 99px; background: var(--accent); box-shadow: 0 0 0 6px var(--accent2); }
+    .brand h1 { font-size: 14px; margin: 0; }
+    .brand p { margin: 2px 0 0 0; color: var(--muted); font-size: 12px; }
+    .nav { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .nav-item {
+      display: grid; grid-template-columns: 58px 1fr; gap: 10px;
+      padding: 10px 12px; border: 1px solid var(--grid2); border-radius: 12px;
+      background: rgba(15,17,23,.55);
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+    }
+    .nav-item:hover { transform: translateY(-1px); background: rgba(15,17,23,.82); border-color: rgba(110,168,255,.30); }
+    .tag {
+      font-family: var(--mono); font-size: 12px; color: var(--text);
+      background: rgba(110,168,255,.12); border: 1px solid rgba(110,168,255,.22);
+      padding: 4px 8px; border-radius: 999px; height: fit-content; width: fit-content;
+    }
+    .label {
+      font-size: 12px; color: var(--muted); line-height: 1.35; overflow: hidden;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    }
+    .main { padding: 26px 22px 60px 22px; box-sizing: border-box; }
+    .topbar { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .topbar .global-search {
+      flex: 1; min-width: 220px; max-width: 620px;
+      display: flex; gap: 10px; align-items: center;
+      border: 1px solid var(--grid2); border-radius: 999px;
+      padding: 10px 14px; background: rgba(17,19,26,.65); box-shadow: var(--shadow);
+    }
+    .topbar input[type="search"] { width: 100%; border: none; outline: none; background: transparent; color: var(--text); font-size: 13px; }
+    .kbd { font-family: var(--mono); color: var(--muted); font-size: 11px; padding: 3px 8px; border: 1px solid var(--grid2); border-radius: 8px; background: rgba(15,17,23,.6); }
+    .day-section { margin: 22px 0 34px 0; padding: 18px 16px; border: 1px solid var(--grid2); border-radius: var(--radius); background: rgba(17,19,26,.55); box-shadow: var(--shadow); }
+    h2 { margin: 0 0 12px 0; font-size: 16px; letter-spacing: -0.2px; }
+    .table-wrap { display: grid; gap: 10px; }
+    .table-toolbar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; justify-content: flex-end; }
+    .table-toolbar .filter { flex: 1; min-width: 220px; border: 1px solid var(--grid2); border-radius: 10px; padding: 10px 12px; background: rgba(15,17,23,.55); color: var(--text); outline: none; font-size: 13px; }
+    .btn { border: 1px solid var(--grid2); border-radius: 10px; padding: 10px 12px; background: rgba(15,17,23,.55); color: var(--text); cursor: pointer; font-size: 13px; }
+    .btn:hover { border-color: rgba(110,168,255,.30); background: rgba(15,17,23,.78); }
+    .scroll { overflow: auto; border: 1px solid var(--grid2); border-radius: 12px; background: rgba(15,17,23,.5); }
+    table.sheet { border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-size: 12px; line-height: 1.45; }
+    table.sheet th, table.sheet td {
+      border-right: 1px solid var(--grid2); border-bottom: 1px solid var(--grid2);
+      padding: 10px 12px; vertical-align: top;
+      background: rgba(15,17,23,.34);
+      min-width: 120px; max-width: 520px;
+      white-space: normal; word-break: break-word;
+    }
+    table.sheet th { position: sticky; top: 0; z-index: 2; background: rgba(17,19,26,.92); border-bottom: 1px solid rgba(255,255,255,.18); font-weight: 600; }
+    table.sheet th:first-child, table.sheet td:first-child { position: sticky; left: 0; z-index: 1; background: rgba(17,19,26,.88); min-width: 90px; max-width: 160px; }
+    table.sheet th:first-child { z-index: 3; }
+    table.sheet tr:nth-child(even) td { background: rgba(15,17,23,.22); }
+    table.sheet tr:hover td { background: rgba(110,168,255,.08); }
+    .hint { margin: 0; color: var(--muted); font-size: 12px; }
+    .toast { position: fixed; right: 18px; bottom: 18px; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(110,168,255,.30); background: rgba(17,19,26,.92); color: var(--text); box-shadow: 0 8px 30px rgba(0,0,0,.35); opacity: 0; transform: translateY(8px); transition: opacity .18s ease, transform .18s ease; pointer-events: none; font-size: 13px; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 980px) { .layout { grid-template-columns: 1fr; } .sidebar { position: relative; height: auto; border-right: none; border-bottom: 1px solid var(--grid2); } }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="dot" aria-hidden="true"></div>
+        <div>
+          <h1>상하이 일정표</h1>
+          <p>DAY1~DAY6 · 엑셀처럼 보기</p>
+        </div>
+      </div>
+      <nav class="nav" aria-label="days navigation">
+        <a class="nav-item" href="#day1" title="DAY1 (도착) 난징동루 · 다이마루(헤이티/릴리안) · M&amp;M’s · 와이탄"><span class="tag">DAY1</span><span class="label">DAY1 (도착) 난징동루 · 다이마루(헤이티/릴리안) · M&amp;M’s · 와이탄</span></a>
+<a class="nav-item" href="#day2" title="DAY2 (전원 6명) 1000Trees + (옵션) M50 + 스타벅스 리저브 + (옵션) 동방명주 외부"><span class="tag">DAY2</span><span class="label">DAY2 (전원 6명) 1000Trees + (옵션) M50 + 스타벅스 리저브 + (옵션) 동방명주 외부</span></a>
+<a class="nav-item" href="#day3" title="DAY3 (전원 6명) 정안사 · 우캉맨션 · 임시정부 · 신천지 · 티엔즈팡"><span class="tag">DAY3</span><span class="label">DAY3 (전원 6명) 정안사 · 우캉맨션 · 임시정부 · 신천지 · 티엔즈팡</span></a>
+<a class="nav-item" href="#day4" title="DAY4 (1명 귀국일, 이후 5명) 예원 · 난징동루/다이마루 · (선택) 양꼬치"><span class="tag">DAY4</span><span class="label">DAY4 (1명 귀국일, 이후 5명) 예원 · 난징동루/다이마루 · (선택) 양꼬치</span></a>
+<a class="nav-item" href="#day5" title="DAY5 (5명) 주가각 · Bellagio · (옵션) 구베이/갤러리아 · Shi No.6"><span class="tag">DAY5</span><span class="label">DAY5 (5명) 주가각 · Bellagio · (옵션) 구베이/갤러리아 · Shi No.6</span></a>
+<a class="nav-item" href="#day6" title="DAY6 (전원 귀국)"><span class="tag">DAY6</span><span class="label">DAY6 (전원 귀국)</span></a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="global-search" role="search">
+          <span style="color: var(--muted); font-size: 12px;">전체 검색</span>
+          <input id="globalSearch" type="search" placeholder="예: 와이탄, 주가각, 리저브, 택시 50–80" />
+          <span class="kbd">Ctrl/⌘ + K</span>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn" id="jumpFirst">첫 결과로 이동</button>
+          <button class="btn" id="resetAll">전체 초기화</button>
+        </div>
+      </div>
+
+      
+<section class="day-section" id="day1">
+  <h2>DAY1 (도착) 난징동루 · 다이마루(헤이티/릴리안) · M&amp;M’s · 와이탄</h2>
+  <div class="table-wrap" data-table="day1">
+    <div class="table-toolbar">
+      <input class="filter" type="search" placeholder="이 테이블에서 검색 (예: 와이탄, 택시, 점도덕)" aria-label="filter day1">
+      <button class="btn" data-action="clear">초기화</button>
+      <button class="btn" data-action="copy">표 복사</button>
+    </div>
+    <div class="scroll">
+      <table class="sheet">
+        <thead><tr><th>구분</th><th>일정/장소</th><th>식사 후보(촘촘 배치)</th><th>택시(분)</th><th>도보(대략)</th><th>컨디션 나쁠 때 컷</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead>
+        <tbody><tr><td>오전</td><td>도착 / 호텔 이동</td><td>기내식/간식</td><td>PVG→호텔 50–80</td><td>0–1km</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>오후</td><td>신세계 다이마루 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Shanghai+New+World+Daimaru" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E6%96%B0%E4%B8%96%E7%95%8C%E5%A4%A7%E4%B8%B8%E7%99%BE%E8%B4%A7%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>난징동루 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Nanjing+Road+Pedestrian+Street" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%8D%97%E4%BA%AC%E8%B7%AF%E6%AD%A5%E8%A1%8C%E8%A1%97" target="_blank" rel="noopener noreferrer">Amap</a><br>M&amp;M’s — <a href="https://www.google.com/maps/search/?api=1&amp;query=M%26M%27s+World+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=M%26M%27s%20World%20Shanghai" target="_blank" rel="noopener noreferrer">Amap</a></td><td>간식/카페(다이마루):<br>- 헤이티 HEYTEA — <a href="https://www.google.com/maps/search/?api=1&amp;query=HEYTEA+New+World+Daimaru+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=HEYTEA%20%E6%96%B0%E4%B8%96%E7%95%8C%E5%A4%A7%E4%B8%B8%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- Lillian Bakery — <a href="https://www.google.com/maps/search/?api=1&amp;query=Lillian+Bakery+New+World+Daimaru+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=Lillian%20Bakery%20%E6%96%B0%E4%B8%96%E7%95%8C%E5%A4%A7%E4%B8%B8%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br><br>가벼운 점심/이른 저녁(난징동루/인근):<br>- 小杨生煎 Yang’s Dumpling(생전포) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Yang%27s+Dumpling+Nanjing+Road+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%B0%8F%E6%9D%A8%E7%94%9F%E7%85%8E%20%E5%8D%97%E4%BA%AC%E8%B7%AF%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- 点都德 点都德(딤섬) — <a href="https://www.google.com/maps/search/?api=1&amp;query=%E7%82%B9%E9%83%BD%E5%BE%B7+Nanjing+Road+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E7%82%B9%E9%83%BD%E5%BE%B7%20%E5%8D%97%E4%BA%AC%E8%B7%AF%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- 外婆家 Grandma’s Home(가정식/동파육) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Grandma%27s+Home+People%27s+Square+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%A4%96%E5%A9%86%E5%AE%B6%20%E4%BA%BA%E6%B0%91%E5%B9%BF%E5%9C%BA%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>5–15</td><td>3–5km</td><td>M&amp;M’s 생략 → 난징동루 구간 축소</td></tr><tr><td>저녁</td><td>와이탄 — <a href="https://www.google.com/maps/search/?api=1&amp;query=The+Bund+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%A4%96%E6%BB%A9" target="_blank" rel="noopener noreferrer">Amap</a></td><td>와이탄 근처 저녁 후보(너무 비싼 곳 제외):<br>- 大壶春 Dahuchun(생전포) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Dahuchun+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%A4%A7%E5%A3%B6%E6%98%A5%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- 来来小笼 라이라이샤오롱(샤오롱바오) — <a href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%A5%E6%9D%A5%E5%B0%8F%E7%AC%BC+Huangpu+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E6%9D%A5%E6%9D%A5%E5%B0%8F%E7%AC%BC%20%E9%BB%84%E6%B5%A6%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>10–20</td><td>+0.5–1km</td><td>와이탄 20분 컷(사진만)</td><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+      </table>
+    </div>
+    <p class="hint">팁: 헤더/첫 열은 고정(sticky)되고, 가로 스크롤이 가능합니다. "표 복사"는 엑셀/노션에 붙여넣기 용입니다.</p>
+  </div>
+</section>
+
+<section class="day-section" id="day2">
+  <h2>DAY2 (전원 6명) 1000Trees + (옵션) M50 + 스타벅스 리저브 + (옵션) 동방명주 외부</h2>
+  <div class="table-wrap" data-table="day2">
+    <div class="table-toolbar">
+      <input class="filter" type="search" placeholder="이 테이블에서 검색 (예: 와이탄, 택시, 점도덕)" aria-label="filter day2">
+      <button class="btn" data-action="clear">초기화</button>
+      <button class="btn" data-action="copy">표 복사</button>
+    </div>
+    <div class="scroll">
+      <table class="sheet">
+        <thead><tr><th>구분</th><th>일정/장소</th><th>식사 후보(촘촘 배치)</th><th>택시(분)</th><th>도보(대략)</th><th>컨디션 나쁠 때 컷</th><th></th><th></th><th></th><th></th></tr></thead>
+        <tbody><tr><td>오전</td><td>1000Trees — <a href="https://www.google.com/maps/search/?api=1&amp;query=1000+Trees+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=1000%20Trees%20Shanghai" target="_blank" rel="noopener noreferrer">Amap</a></td><td>브런치/가벼운 점심(근처에서 선택):<br>- 点都德(딤섬) — <a href="https://www.google.com/maps/search/?api=1&amp;query=%E7%82%B9%E9%83%BD%E5%BE%B7+Jingan+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E7%82%B9%E9%83%BD%E5%BE%B7%20%E9%9D%99%E5%AE%89%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- 外婆家(가정식) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Grandma%27s+Home+Jingan+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%A4%96%E5%A9%86%E5%AE%B6%20%E9%9D%99%E5%AE%89%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- 小杨生煎(생전포) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Yang%27s+Dumpling+Jingan+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%B0%8F%E6%9D%A8%E7%94%9F%E7%85%8E%20%E9%9D%99%E5%AE%89%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>15–30</td><td>1–2km</td><td></td></tr><tr><td>오후</td><td>(선택) M50 — <a href="https://www.google.com/maps/search/?api=1&amp;query=M50+Creative+Park" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=M50%20Creative%20Park" target="_blank" rel="noopener noreferrer">Amap</a><br>리저브 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Starbucks+Reserve+Roastery+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=Starbucks%20Reserve%20Roastery%20Shanghai" target="_blank" rel="noopener noreferrer">Amap</a></td><td>디저트/카페 후보(리저브 주변 포함):<br>- Starbucks Reserve(커피/굿즈)<br>- Polux(프렌치 토스트) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Polux+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=Polux%20Shanghai" target="_blank" rel="noopener noreferrer">Amap</a></td><td>20–35</td><td>1–3km</td><td>1) M50 생략 2) 리저브 체류 축소</td><td></td></tr><tr><td>저녁</td><td>(옵션) 동방명주 외부 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Oriental+Pearl+Tower" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E4%B8%9C%E6%96%B9%E6%98%8E%E7%8F%A0%E5%A1%94" target="_blank" rel="noopener noreferrer">Amap</a></td><td>저녁 후보(이날은 이동 적게, 선택 폭 넓게):<br>- 现九壹签/헌지우이치엔(양꼬치/사용자 제공) — <a href="https://www.google.com/maps/search/?api=1&amp;query=830+Nanjinglu+St+Huangpu+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=830%20Nanjinglu%20Huangpu%20%E7%AC%AC%E4%B8%80%E7%99%BE%E8%B4%A7%20B%E9%A6%86%206%E5%B1%82" target="_blank" rel="noopener noreferrer">Amap</a><br>- 点都德(딤섬) — <a href="https://www.google.com/maps/search/?api=1&amp;query=%E7%82%B9%E9%83%BD%E5%BE%B7+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E7%82%B9%E9%83%BD%E5%BE%B7%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- 外婆家(가정식) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Grandma%27s+Home+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%A4%96%E5%A9%86%E5%AE%B6%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>15–40</td><td>+0.5–1.5km</td><td>3) 동방명주 생략</td></tr></tbody>
+      </table>
+    </div>
+    <p class="hint">팁: 헤더/첫 열은 고정(sticky)되고, 가로 스크롤이 가능합니다. "표 복사"는 엑셀/노션에 붙여넣기 용입니다.</p>
+  </div>
+</section>
+
+<section class="day-section" id="day3">
+  <h2>DAY3 (전원 6명) 정안사 · 우캉맨션 · 임시정부 · 신천지 · 티엔즈팡</h2>
+  <div class="table-wrap" data-table="day3">
+    <div class="table-toolbar">
+      <input class="filter" type="search" placeholder="이 테이블에서 검색 (예: 와이탄, 택시, 점도덕)" aria-label="filter day3">
+      <button class="btn" data-action="clear">초기화</button>
+      <button class="btn" data-action="copy">표 복사</button>
+    </div>
+    <div class="scroll">
+      <table class="sheet">
+        <thead><tr><th>구분</th><th>일정/장소</th><th>식사 후보(촘촘 배치)</th><th>택시(분)</th><th>도보(대략)</th><th>컨디션 나쁠 때 컷</th><th></th><th></th><th></th><th></th><th></th></tr></thead>
+        <tbody><tr><td>오전</td><td>정안사 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Jing%27an+Temple+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E9%9D%99%E5%AE%89%E5%AF%BA" target="_blank" rel="noopener noreferrer">Amap</a><br>우캉맨션 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Wukang+Mansion+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E6%AD%A6%E5%BA%B7%E5%A4%A7%E6%A5%BC" target="_blank" rel="noopener noreferrer">Amap</a></td><td>점심 후보(우캉/화이하이루 축):<br>- Grandma’s Home(가정식) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Grandma%27s+Home+Xuhui+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%A4%96%E5%A9%86%E5%AE%B6%20%E5%BE%90%E6%B1%87%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- 点都德(딤섬) — <a href="https://www.google.com/maps/search/?api=1&amp;query=%E7%82%B9%E9%83%BD%E5%BE%B7+Xuhui+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E7%82%B9%E9%83%BD%E5%BE%B7%20%E5%BE%90%E6%B1%87%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- Din Tai Fung(샤오롱바오) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Din+Tai+Fung+Xuhui+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=Din%20Tai%20Fung%20%E5%BE%90%E6%B1%87%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>10–30</td><td>2–4km</td><td></td></tr><tr><td>오후</td><td>임시정부 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Former+Site+of+the+Provisional+Government+of+the+Republic+of+Korea+in+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%A4%A7%E9%9F%A9%E6%B0%91%E5%9B%BD%E4%B8%B4%E6%97%B6%E6%94%BF%E5%BA%9C%E6%97%A7%E5%9D%80" target="_blank" rel="noopener noreferrer">Amap</a><br>신천지 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Xintiandi+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E6%96%B0%E5%A4%A9%E5%9C%B0%20Shanghai" target="_blank" rel="noopener noreferrer">Amap</a><br>티엔즈팡 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Tianzifang+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E7%94%B0%E5%AD%90%E5%9D%8A%20Shanghai" target="_blank" rel="noopener noreferrer">Amap</a></td><td>카페/디저트 후보(신천지/티엔즈팡 주변):<br>- Polux(프렌치 토스트) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Polux+Xintiandi+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=Polux%20%E6%96%B0%E5%A4%A9%E5%9C%B0%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>10–20</td><td>4–6km</td><td>1) 티엔즈팡 체류 최소화 2) 신천지 쇼핑 생략</td><td></td></tr><tr><td>저녁</td><td>저녁(택1)</td><td>저녁 후보(황푸/난징동루권 포함):<br>- Shanghai Grandmother Restaurant(가정식) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Shanghai+Grandmother+Restaurant" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=Shanghai%20Grandmother%20Restaurant%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- Dahuchun(생전포) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Dahuchun+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%A4%A7%E5%A3%B6%E6%98%A5%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- 来来小笼(샤오롱바오) — <a href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%A5%E6%9D%A5%E5%B0%8F%E7%AC%BC+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E6%9D%A5%E6%9D%A5%E5%B0%8F%E7%AC%BC%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>10–35</td><td>+0.5–1.5km</td><td>3) 저녁 후 추가 야간 이동 생략</td><td></td><td></td></tr></tbody>
+      </table>
+    </div>
+    <p class="hint">팁: 헤더/첫 열은 고정(sticky)되고, 가로 스크롤이 가능합니다. "표 복사"는 엑셀/노션에 붙여넣기 용입니다.</p>
+  </div>
+</section>
+
+<section class="day-section" id="day4">
+  <h2>DAY4 (1명 귀국일, 이후 5명) 예원 · 난징동루/다이마루 · (선택) 양꼬치</h2>
+  <div class="table-wrap" data-table="day4">
+    <div class="table-toolbar">
+      <input class="filter" type="search" placeholder="이 테이블에서 검색 (예: 와이탄, 택시, 점도덕)" aria-label="filter day4">
+      <button class="btn" data-action="clear">초기화</button>
+      <button class="btn" data-action="copy">표 복사</button>
+    </div>
+    <div class="scroll">
+      <table class="sheet">
+        <thead><tr><th>구분</th><th>일정/장소</th><th>식사 후보(촘촘 배치)</th><th>택시(분)</th><th>도보(대략)</th><th>컨디션 나쁠 때 컷</th><th></th><th></th><th></th><th></th></tr></thead>
+        <tbody><tr><td>오전</td><td>귀국자: 호텔 픽업 → 오전(시간 미정) 출발 → PVG<br>나머지: 예원 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Yu+Garden+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E8%B1%AB%E5%9B%AD%20Shanghai" target="_blank" rel="noopener noreferrer">Amap</a></td><td>예원 근처 점심 후보(샤오롱바오 중심):<br>- 南翔馒头店 Nanxiang(샤오롱바오) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Nanxiang+Xiaolongbao+Yu+Garden" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%8D%97%E7%BF%94%E5%B0%8F%E7%AC%BC%20%E8%B1%AB%E5%9B%AD" target="_blank" rel="noopener noreferrer">Amap</a><br>- 来来小笼(샤오롱바오) — <a href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%A5%E6%9D%A5%E5%B0%8F%E7%AC%BC+Yu+Garden+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E6%9D%A5%E6%9D%A5%E5%B0%8F%E7%AC%BC%20%E8%B1%AB%E5%9B%AD%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>10–25</td><td>1–3km</td><td></td><td></td></tr><tr><td>오후</td><td>난징동루 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Nanjing+Road+Pedestrian+Street" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%8D%97%E4%BA%AC%E8%B7%AF%E6%AD%A5%E8%A1%8C%E8%A1%97" target="_blank" rel="noopener noreferrer">Amap</a><br>다이마루(헤이티/릴리안) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Shanghai+New+World+Daimaru" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E6%96%B0%E4%B8%96%E7%95%8C%E5%A4%A7%E4%B8%B8%E7%99%BE%E8%B4%A7%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>간식/카페 후보:<br>- HEYTEA — <a href="https://www.google.com/maps/search/?api=1&amp;query=HEYTEA+Shanghai+New+World+Daimaru" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=HEYTEA%20%E6%96%B0%E4%B8%96%E7%95%8C%E5%A4%A7%E4%B8%B8%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- Lillian Bakery — <a href="https://www.google.com/maps/search/?api=1&amp;query=Lillian+Bakery+Shanghai+New+World+Daimaru" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=Lillian%20Bakery%20%E6%96%B0%E4%B8%96%E7%95%8C%E5%A4%A7%E4%B8%B8%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>10–25</td><td>2–4km</td><td>예원상성 쇼핑 생략 / 난징동루 산책 생략</td></tr><tr><td>저녁</td><td>(선택) 양꼬치(사용자 지정) — <a href="https://www.google.com/maps/search/?api=1&amp;query=830+Nanjinglu+St+Huangpu+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=830%20Nanjinglu%20Huangpu%20%E7%AC%AC%E4%B8%80%E7%99%BE%E8%B4%A7%20B%E9%A6%86%206%E5%B1%82" target="_blank" rel="noopener noreferrer">Amap</a></td><td>저녁 대안 후보(같은 권역):<br>- 点都德(딤섬) — <a href="https://www.google.com/maps/search/?api=1&amp;query=%E7%82%B9%E9%83%BD%E5%BE%B7+Huangpu+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E7%82%B9%E9%83%BD%E5%BE%B7%20%E9%BB%84%E6%B5%A6%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- Dahuchun(생전포) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Dahuchun+Huangpu+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%A4%A7%E5%A3%B6%E6%98%A5%20%E9%BB%84%E6%B5%A6%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>5–15</td><td>+0.5–1km</td><td>저녁 외식 생략하고 휴식</td><td></td></tr></tbody>
+      </table>
+    </div>
+    <p class="hint">팁: 헤더/첫 열은 고정(sticky)되고, 가로 스크롤이 가능합니다. "표 복사"는 엑셀/노션에 붙여넣기 용입니다.</p>
+  </div>
+</section>
+
+<section class="day-section" id="day5">
+  <h2>DAY5 (5명) 주가각 · Bellagio · (옵션) 구베이/갤러리아 · Shi No.6</h2>
+  <div class="table-wrap" data-table="day5">
+    <div class="table-toolbar">
+      <input class="filter" type="search" placeholder="이 테이블에서 검색 (예: 와이탄, 택시, 점도덕)" aria-label="filter day5">
+      <button class="btn" data-action="clear">초기화</button>
+      <button class="btn" data-action="copy">표 복사</button>
+    </div>
+    <div class="scroll">
+      <table class="sheet">
+        <thead><tr><th>구분</th><th>일정/장소</th><th>식사 후보(촘촘 배치)</th><th>택시(분)</th><th>도보(대략)</th><th>컨디션 나쁠 때 컷</th><th></th><th></th><th></th></tr></thead>
+        <tbody><tr><td>오전</td><td>주가각 — <a href="https://www.google.com/maps/search/?api=1&amp;query=Zhujiajiao+Ancient+Town" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E6%9C%B1%E5%AE%B6%E8%A7%92%E5%8F%A4%E9%95%87" target="_blank" rel="noopener noreferrer">Amap</a></td><td>주가각 현지 점심(현장 선택용)</td><td>호텔→주가각 50–80</td><td>3–5km</td><td>주가각 체류 축소(핵심만)</td><td></td><td></td></tr><tr><td>오후</td><td>Bellagio Café — <a href="https://www.google.com/maps/search/?api=1&amp;query=Bellagio+Cafe+778+Huangjincheng+Ave+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=778%20Huangjincheng%20Ave%20Bellagio%20Cafe%20Shanghai" target="_blank" rel="noopener noreferrer">Amap</a><br>(옵션) Galleria — <a href="https://www.google.com/maps/search/?api=1&amp;query=Galleria+Shanghai+Koreatown" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%8F%A4%E5%8C%97%20%E5%8A%A0%E4%B9%90%E5%88%A9%E4%BA%9A%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>카페/디저트: Bellagio에서 해결</td><td>주가각→구베이 50–80</td><td>1–2km</td><td>갤러리아 10분 컷 또는 생략</td><td></td></tr><tr><td>저녁</td><td>Shi No.6 — <a href="https://www.google.com/maps/search/?api=1&amp;query=1482-1+Hongqiao+Rd+Changning+Shanghai+lobster+grill" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=1482-1%20Hongqiao%20Rd%20Changning%20lobster%20grill" target="_blank" rel="noopener noreferrer">Amap</a></td><td>저녁 대안(구베이/홍차오 권역):<br>- 点都德(딤섬) — <a href="https://www.google.com/maps/search/?api=1&amp;query=%E7%82%B9%E9%83%BD%E5%BE%B7+Changning+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E7%82%B9%E9%83%BD%E5%BE%B7%20%E9%95%BF%E5%AE%81%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a><br>- Grandma’s Home(가정식) — <a href="https://www.google.com/maps/search/?api=1&amp;query=Grandma%27s+Home+Changning+Shanghai" target="_blank" rel="noopener noreferrer">Google</a></td><td><a href="https://uri.amap.com/search?keyword=%E5%A4%96%E5%A9%86%E5%AE%B6%20%E9%95%BF%E5%AE%81%20%E4%B8%8A%E6%B5%B7" target="_blank" rel="noopener noreferrer">Amap</a></td><td>10–45</td><td>+0.5–1km</td><td>저녁 후 2차 이동 생략</td></tr></tbody>
+      </table>
+    </div>
+    <p class="hint">팁: 헤더/첫 열은 고정(sticky)되고, 가로 스크롤이 가능합니다. "표 복사"는 엑셀/노션에 붙여넣기 용입니다.</p>
+  </div>
+</section>
+
+<section class="day-section" id="day6">
+  <h2>DAY6 (전원 귀국)</h2>
+  <div class="table-wrap" data-table="day6">
+    <div class="table-toolbar">
+      <input class="filter" type="search" placeholder="이 테이블에서 검색 (예: 와이탄, 택시, 점도덕)" aria-label="filter day6">
+      <button class="btn" data-action="clear">초기화</button>
+      <button class="btn" data-action="copy">표 복사</button>
+    </div>
+    <div class="scroll">
+      <table class="sheet">
+        <thead><tr><th>구분</th><th>일정/장소</th><th>식사 후보(촘촘 배치)</th><th>택시(분)</th><th>도보(대략)</th><th>컨디션 나쁠 때 컷</th></tr></thead>
+        <tbody><tr><td>오전</td><td>호텔 픽업/택시 → PVG</td><td>공항 내 식사</td><td>50–80</td><td>0–1km</td><td>당일 관광/쇼핑은 생략</td></tr><tr><td>오후</td><td>PVG 14:25 → ICN 17:25 (MU8603, 4/21)</td><td></td><td></td><td></td><td></td></tr></tbody>
+      </table>
+    </div>
+    <p class="hint">팁: 헤더/첫 열은 고정(sticky)되고, 가로 스크롤이 가능합니다. "표 복사"는 엑셀/노션에 붙여넣기 용입니다.</p>
+  </div>
+</section>
+
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const toast = (msg) => {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => el.classList.remove('show'), 1600);
+    };
+
+    function filterTable(tableWrap, query) {
+      const q = (query || '').trim().toLowerCase();
+      const rows = tableWrap.querySelectorAll('tbody tr');
+      let shown = 0;
+      rows.forEach(tr => {
+        const txt = tr.innerText.toLowerCase();
+        const ok = !q || txt.includes(q);
+        tr.style.display = ok ? '' : 'none';
+        if (ok) shown += 1;
+      });
+      return shown;
+    }
+
+    function copyTable(tableWrap) {
+      const table = tableWrap.querySelector('table');
+      const rows = [...table.querySelectorAll('tr')].filter(r => r.style.display !== 'none');
+      const tsv = rows.map(r => [...r.children].map(c => c.innerText.replace(/\s+$/g,'').replace(/\n+/g,'\n')).join('\t')).join('\n');
+      navigator.clipboard.writeText(tsv).then(() => toast('복사 완료: 엑셀/노션에 붙여넣기 가능'));
+    }
+
+    document.querySelectorAll('.table-wrap').forEach(wrap => {
+      const input = wrap.querySelector('.filter');
+      wrap.querySelector('[data-action="clear"]').addEventListener('click', () => {
+        input.value = '';
+        filterTable(wrap, '');
+        toast('테이블 초기화');
+      });
+      wrap.querySelector('[data-action="copy"]').addEventListener('click', () => copyTable(wrap));
+      input.addEventListener('input', () => {
+        const count = filterTable(wrap, input.value);
+        toast(input.value.trim() ? ('일치 ' + count + '행') : '검색 해제');
+      });
+    });
+
+    const global = document.getElementById('globalSearch');
+    function applyGlobal() {
+      const q = global.value;
+      let total = 0;
+      document.querySelectorAll('.table-wrap').forEach(wrap => {
+        total += filterTable(wrap, q);
+      });
+      toast(q.trim() ? ('전체에서 일치 ' + total + '행') : '전체 검색 해제');
+    }
+    global.addEventListener('input', applyGlobal);
+
+    window.addEventListener('keydown', (e) => {
+      const isMac = navigator.platform.toUpperCase().includes('MAC');
+      if ((isMac ? e.metaKey : e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        global.focus();
+      }
+      if (e.key === 'Escape') {
+        global.value = '';
+        applyGlobal();
+        toast('전체 초기화');
+      }
+    });
+
+    document.getElementById('jumpFirst').addEventListener('click', () => {
+      const q = global.value.trim().toLowerCase();
+      if (!q) { toast('먼저 전체 검색어를 입력하세요'); return; }
+      const sections = [...document.querySelectorAll('.day-section')];
+      const first = sections.find(sec => sec.innerText.toLowerCase().includes(q));
+      if (first) { first.scrollIntoView({behavior:'smooth', block:'start'}); toast('첫 결과로 이동'); }
+      else { toast('일치하는 결과가 없습니다'); }
+    });
+
+    document.getElementById('resetAll').addEventListener('click', () => {
+      global.value = '';
+      applyGlobal();
+      document.querySelectorAll('.table-wrap .filter').forEach(i => i.value = '');
+      document.querySelectorAll('.table-wrap').forEach(w => filterTable(w, ''));
+      toast('전체 초기화 완료');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
