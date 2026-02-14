@@ -526,8 +526,16 @@
             gap:8px;
             flex-wrap:nowrap;
         }
-</style>
 
+
+/* Unified schedule section alignment (Day 1~5) */
+.schedule-section .schedule-card { width: 100%; }
+.place-item { display: flex; flex-direction: column; gap: 8px; }
+.place-header { width: 100%; display:flex; align-items:center; justify-content:space-between; gap: 12px; }
+.place-header .place-name { margin-bottom: 0 !important; flex: 1; min-width: 0; }
+.place-header .map-buttons { margin-left: auto; flex-shrink: 0; display:flex; align-items:center; gap: 8px; flex-wrap: nowrap; }
+.place-header .map-btn { display:inline-flex; align-items:center; justify-content:center; }
+</style>
 <style>
 .place-header{
   display:flex;
@@ -548,7 +556,6 @@
   gap:6px;
 }
 </style>
-
 </head>
 <body>
 <header class="header" id="header">
@@ -621,26 +628,20 @@
                         오후
                     </div>
 <div class="schedule-card">
-<div class="place-item">
-<div class="place-name">🏬 신세계 다이마루</div>
-<div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🏬 신세계 다이마루</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Shanghai+New+World+Daimaru" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="新世界大丸百货 上海" data-web-href="https://uri.amap.com/search?keyword=%E6%96%B0%E4%B8%96%E7%95%8C%E5%A4%A7%E4%B8%B8%E7%99%BE%E8%B4%A7%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
+</div></div>
 </div>
-</div>
-<div class="place-item">
-<div class="place-name">🛍️ 난징동루 거리</div>
-<div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🛍️ 난징동루 거리</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Nanjing+Road+Pedestrian+Street" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="南京路步行街" data-web-href="https://uri.amap.com/search?keyword=%E5%8D%97%E4%BA%AC%E8%B7%AF%E6%AD%A5%E8%A1%8C%E8%A1%97" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
+</div></div>
 </div>
-</div>
-<div class="place-item">
-<div class="place-name">🍫 M&amp;M's World</div>
-<div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🍫 M&amp;M's World</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=M%26M%27s+World+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="M&amp;M's World Shanghai" data-web-href="https://uri.amap.com/search?keyword=M%26M%27s%20World%20Shanghai" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
+</div></div>
 </div>
 <div class="meal-section">
 <div class="meal-title">🍰 간식 · 카페 추천</div>
@@ -660,28 +661,28 @@
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">☕ Marmalade (마멀레이드)</span>
+<span class="meal-name">☕ Marmalade - 마멀레이드</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Marmalade+coffee+%E5%8C%97%E6%B5%B7%E8%B7%AF+261+%E4%B8%8A%E6%B5%B7" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="Marmalade 北海路261号 上海" data-web-href="https://uri.amap.com/search?keyword=Marmalade%20%E5%8C%97%E6%B5%B7%E8%B7%AF261%E5%8F%B7%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">🧋 CHAGEE (霸王茶姬)</span>
+<span class="meal-name">🧋 CHAGEE - 霸王茶姬</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=CHAGEE+%E4%B8%8A%E6%B5%B7" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="霸王茶姬 上海" data-web-href="https://uri.amap.com/search?keyword=%E9%9C%B8%E7%8E%8B%E8%8C%B6%E5%A7%AC%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">☕ Manner Coffee (Guoke Binjiang Branch)</span>
+<span class="meal-name">☕ Manner Coffee - Guoke Binjiang Branch</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Manner+Coffee+Guoke+Binjiang+Branch+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="Manner Coffee Guoke Binjiang Branch" data-web-href="https://uri.amap.com/search?keyword=Manner%20Coffee%20Guoke%20Binjiang%20Branch" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">🥞 山东杂粮煎饼</span>
+<span class="meal-name">🥞 山东杂粮煎饼 (산동 잡곡전병 - 지앤빙)</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=%E5%B1%B1%E4%B8%9C%E6%9D%82%E7%B2%AE%E7%85%8E%E9%A5%BC+%E5%B9%BF%E8%A5%BF%E5%8C%97%E8%B7%AF430+%E4%B8%8A%E6%B5%B7" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="山东杂粮煎饼 广西北路430 上海" data-web-href="https://uri.amap.com/search?keyword=%E5%B1%B1%E4%B8%9C%E6%9D%82%E7%B2%AE%E7%85%8E%E9%A5%BC%20%E5%B9%BF%E8%A5%BF%E5%8C%97%E8%B7%AF430%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
@@ -700,35 +701,29 @@
                         저녁
                     </div>
 <div class="schedule-card">
-<div class="place-item">
-<div class="place-name">🌃 와이탄 야경</div>
-<div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🌃 와이탄 야경</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=The+Bund+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="外滩 上海" data-web-href="https://uri.amap.com/search?keyword=%E5%A4%96%E6%BB%A9%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
+</div></div>
 </div>
 <div class="meal-section">
 <div class="meal-title">🍽️ 저녁 식사 추천</div>
 <ul class="meal-list">
 <li class="meal-item">
-<span class="meal-name">🥟 南翔馒头店 (샤오롱바오)</span>
+<span class="meal-name">🥟 南翔馒头店 - 샤오롱바오</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Nanxiang+Xiaolongbao+Nanjing+Road" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="南翔小笼 南京路" data-web-href="https://uri.amap.com/search?keyword=%E5%8D%97%E7%BF%94%E5%B0%8F%E7%AC%BC%20%E5%8D%97%E4%BA%AC%E8%B7%AF" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">🍲 朱光玉火锅馆 (人民广场店)</span>
+<span class="meal-name">🍲 朱光玉火锅馆 - 人民广场店(주광옥 훠궈 - 인민광장점)</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9C%B1%E5%85%89%E7%8E%89%E7%81%AB%E9%94%85%E9%A6%86+%E4%BA%BA%E6%B0%91%E5%B9%BF%E5%9C%BA%E5%BA%97+%E4%B8%8A%E6%B5%B7" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="朱光玉火锅馆 人民广场店" data-web-href="https://uri.amap.com/search?keyword=%E6%9C%B1%E5%85%89%E7%8E%89%E7%81%AB%E9%94%85%E9%A6%86%20%E4%BA%BA%E6%B0%91%E5%B9%BF%E5%9C%BA%E5%BA%97" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div>
 </li>
 </ul>
-</div>
-<div class="backup-section">
-<div class="backup-title">😴 컨디션 나쁠 때</div>
-<div class="backup-text">저녁 일정 생략하고 휴식</div>
 </div>
 </div>
 </div>
@@ -740,9 +735,7 @@
 <h2 class="day-title">1000Trees</h2>
 <p class="day-summary">1000Trees +  M50 + 스타벅스 리저브 +  동방명주 외부</p>
 </div>
-<div class="schedule-grid">
-<!-- 오전 -->
-<div class="schedule-section">
+<div class="schedule-grid"><div class="schedule-section">
 <div class="time-label">
 <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <circle cx="12" cy="12" r="10"></circle>
@@ -751,32 +744,30 @@
                         오전
                     </div>
 <div class="schedule-card">
-<div class="place-item">
-<div class="place-name">🌳 1000Trees</div>
-<div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🌳 1000Trees</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=1000+Trees+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="1000 Trees Shanghai" data-web-href="https://uri.amap.com/search?keyword=1000%20Trees%20Shanghai" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
+</div></div>
 </div>
 <div class="meal-section">
 <div class="meal-title">🍽️ 브런치·점심 추천</div>
 <ul class="meal-list">
 <li class="meal-item">
-<span class="meal-name">🥟 点都德 (딤섬)</span>
+<span class="meal-name">🥟 点都德 - 딤섬</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=%E7%82%B9%E9%83%BD%E5%BE%B7+Jingan+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="点都德 静安 上海" data-web-href="https://uri.amap.com/search?keyword=%E7%82%B9%E9%83%BD%E5%BE%B7%20%E9%9D%99%E5%AE%89%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">🍲 外婆家 (가정식)</span>
+<span class="meal-name">🍲 外婆家 - 가정식</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Grandma%27s+Home+Jingan+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="外婆家 静安 上海" data-web-href="https://uri.amap.com/search?keyword=%E5%A4%96%E5%A9%86%E5%AE%B6%20%E9%9D%99%E5%AE%89%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">🥟 小杨生煎 (생전포)</span>
+<span class="meal-name">🥟 小杨生煎 - 생전포</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Yang%27s+Dumpling+Jingan+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="小杨生煎 静安 上海" data-web-href="https://uri.amap.com/search?keyword=%E5%B0%8F%E6%9D%A8%E7%94%9F%E7%85%8E%20%E9%9D%99%E5%AE%89%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
@@ -785,9 +776,7 @@
 </ul>
 </div>
 </div>
-</div>
-<!-- 오후 -->
-<div class="schedule-section">
+</div><div class="schedule-section">
 <div class="time-label">
 <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <circle cx="12" cy="12" r="5"></circle>
@@ -796,25 +785,21 @@
                         오후
                     </div>
 <div class="schedule-card">
-<div class="place-item">
-<div class="place-name">🎨 M50 Creative Park </div>
-<div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🎨 M50 Creative Park</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=M50+Creative+Park" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="M50 Creative Park" data-web-href="https://uri.amap.com/search?keyword=M50%20Creative%20Park" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
+</div></div>
 </div>
-</div>
-<div class="place-item">
-<div class="place-name">☕ 스타벅스 리저브 로스터리</div>
-<div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">☕ 스타벅스 리저브 로스터리</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Starbucks+Reserve+Roastery+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="Starbucks Reserve Roastery Shanghai" data-web-href="https://uri.amap.com/search?keyword=Starbucks%20Reserve%20Roastery%20Shanghai" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
+</div></div>
 </div>
 <div class="meal-section">
 <div class="meal-title">🍰 디저트·카페 추천</div>
 <ul class="meal-list">
 <li class="meal-item">
-<span class="meal-name">🥐 Polux (프렌치 토스트)</span>
+<span class="meal-name">🥐 Polux - 프렌치 토스트</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Polux+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="Polux Shanghai" data-web-href="https://uri.amap.com/search?keyword=Polux%20Shanghai" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
@@ -822,14 +807,8 @@
 </li>
 </ul>
 </div>
-<div class="backup-section">
-<div class="backup-title">😴 컨디션 나쁠 때</div>
-<div class="backup-text">1) M50 생략 2) 리저브에 오래 있기</div>
 </div>
-</div>
-</div>
-<!-- 저녁 -->
-<div class="schedule-section">
+</div><div class="schedule-section">
 <div class="time-label">
 <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -837,32 +816,30 @@
                         저녁
                     </div>
 <div class="schedule-card">
-<div class="place-item">
-<div class="place-name">🗼 동방명주 외부 </div>
-<div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🗼 동방명주 외부</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Oriental+Pearl+Tower" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="东方明珠塔" data-web-href="https://uri.amap.com/search?keyword=%E4%B8%9C%E6%96%B9%E6%98%8E%E7%8F%A0%E5%A1%94" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
+</div></div>
 </div>
 <div class="meal-section">
 <div class="meal-title">🍽️ 저녁 식사 추천</div>
 <ul class="meal-list">
 <li class="meal-item">
-<span class="meal-name">🍢 现九壹签 (양꼬치)</span>
+<span class="meal-name">🍢 现九壹签 - 양꼬치</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=830+Nanjinglu+St+Huangpu+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="830 Nanjinglu Huangpu 第一百货 B馆 6层" data-web-href="https://uri.amap.com/search?keyword=830%20Nanjinglu%20Huangpu%20%E7%AC%AC%E4%B8%80%E7%99%BE%E8%B4%A7%20B%E9%A6%86%206%E5%B1%82" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">🥟 点都德 (딤섬)</span>
+<span class="meal-name">🥟 点都德 - 딤섬</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=%E7%82%B9%E9%83%BD%E5%BE%B7+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="点都德 上海" data-web-href="https://uri.amap.com/search?keyword=%E7%82%B9%E9%83%BD%E5%BE%B7%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">🍲 外婆家 (가정식)</span>
+<span class="meal-name">🍲 外婆家 - 가정식</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Grandma%27s+Home+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="外婆家 上海" data-web-href="https://uri.amap.com/search?keyword=%E5%A4%96%E5%A9%86%E5%AE%B6%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
@@ -870,13 +847,10 @@
 </li>
 </ul>
 </div>
-<div class="backup-section">
-<div class="backup-title">😴 컨디션 나쁠 때</div>
-<div class="backup-text">3) 동방명주 생략</div>
 </div>
-</div>
-</div>
-</div>
+</div></div>
+<!-- 저녁 -->
+
 </section>
 <!-- DAY 3 -->
 <section class="day-panel" id="day-3" role="tabpanel">
@@ -884,9 +858,7 @@
 <h2 class="day-title">정안사 탐방</h2>
 <p class="day-summary">정안사 · 우캉맨션 · 임시정부 · 신천지 · 티엔즈팡</p>
 </div>
-<div class="schedule-grid">
-<!-- 오전 -->
-<div class="schedule-section">
+<div class="schedule-grid"><div class="schedule-section">
 <div class="time-label">
 <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <circle cx="12" cy="12" r="10"></circle>
@@ -895,106 +867,23 @@
                         오전
                     </div>
 <div class="schedule-card">
-<div class="place-item">
-<div class="place-name">🛕 정안사</div>
-<div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🛕 정안사</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Jing%27an+Temple+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="静安寺" data-web-href="https://uri.amap.com/search?keyword=%E9%9D%99%E5%AE%89%E5%AF%BA" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
+</div></div>
 </div>
-</div>
-<div class="place-item">
-<div class="place-name">🏛️ 우캉맨션</div>
-<div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🏛️ 우캉맨션</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Wukang+Mansion+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="武康大楼" data-web-href="https://uri.amap.com/search?keyword=%E6%AD%A6%E5%BA%B7%E5%A4%A7%E6%A5%BC" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
+</div></div>
 </div>
 <div class="meal-section">
 <div class="meal-title">🍽️ 점심 추천 (우캉/화이하이루)</div>
 <ul class="meal-list">
-<li class="meal-item">
-<span class="meal-name">🍲 Grandma's Home (가정식)</span>
-<div class="map-buttons">
-<a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Grandma%27s+Home+Xuhui+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
-<a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="外婆家 徐汇 上海" data-web-href="https://uri.amap.com/search?keyword=%E5%A4%96%E5%A9%86%E5%AE%B6%20%E5%BE%90%E6%B1%87%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
-</li>
-<li class="meal-item">
-<span class="meal-name">🥟 点都德 (딤섬)</span>
-<div class="map-buttons">
-<a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=%E7%82%B9%E9%83%BD%E5%BE%B7+Xuhui+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
-<a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="点都德 徐汇 上海" data-web-href="https://uri.amap.com/search?keyword=%E7%82%B9%E9%83%BD%E5%BE%B7%20%E5%BE%90%E6%B1%87%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
-</li>
-<li class="meal-item">
-<span class="meal-name">🥟 Din Tai Fung (샤오롱바오)</span>
-<div class="map-buttons">
-<a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Din+Tai+Fung+Xuhui+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
-<a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="Din Tai Fung 徐汇 上海" data-web-href="https://uri.amap.com/search?keyword=Din%20Tai%20Fung%20%E5%BE%90%E6%B1%87%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
-</li>
 </ul>
 </div>
 </div>
-</div>
-<!-- 오후 -->
-<div class="schedule-section">
-<div class="time-label">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
-<circle cx="12" cy="12" r="5"></circle>
-<path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"></path>
-</svg>
-                        오후
-                    </div>
-<div class="schedule-card">
-<div class="place-item">
-<div class="place-name">🇰🇷 대한민국 임시정부</div>
-<div class="map-buttons">
-<a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Former+Site+of+the+Provisional+Government+of+the+Republic+of+Korea+in+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
-<a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="大韩民国临时政府旧址" data-web-href="https://uri.amap.com/search?keyword=%E5%A4%A7%E9%9F%A9%E6%B0%91%E5%9B%BD%E4%B8%B4%E6%97%B6%E6%94%BF%E5%BA%9C%E6%97%A7%E5%9D%80" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
-</div>
-<div class="place-item">
-<div class="place-name">🏙️ 신천지</div>
-<div class="map-buttons">
-<a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Xintiandi+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
-<a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="新天地 Shanghai" data-web-href="https://uri.amap.com/search?keyword=%E6%96%B0%E5%A4%A9%E5%9C%B0%20Shanghai" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
-</div>
-<div class="place-item">
-<div class="place-name">🎨 티엔즈팡</div>
-<div class="map-buttons">
-<a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Tianzifang+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
-<a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="田子坊 Shanghai" data-web-href="https://uri.amap.com/search?keyword=%E7%94%B0%E5%AD%90%E5%9D%8A%20Shanghai" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
-</div>
-<div class="meal-section">
-<div class="meal-title">🍰 카페·디저트 추천</div>
-<ul class="meal-list">
-<li class="meal-item">
-<span class="meal-name">🥐 Polux (프렌치 토스트)</span>
-<div class="map-buttons">
-<a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Polux+Xintiandi+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
-<a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="Polux 新天地 上海" data-web-href="https://uri.amap.com/search?keyword=Polux%20%E6%96%B0%E5%A4%A9%E5%9C%B0%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
-</li>
-<li class="meal-item">
-<span class="meal-name">☕ 星巴克臻选烘焙工坊 (Starbucks Reserve Roastery)</span>
-<div class="map-buttons">
-<a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Starbucks+Reserve+Roastery+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
-<a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="星巴克臻选 上海烘焙工坊" data-web-href="https://uri.amap.com/search?keyword=%E6%98%9F%E5%B7%B4%E5%85%8B%E8%87%BB%E9%80%89%20%E4%B8%8A%E6%B5%B7%E7%83%98%E7%84%99%E5%B7%A5%E5%9D%8A" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
-</div>
-</li>
-</ul>
-</div>
-<div class="backup-section">
-<div class="backup-title">😴 컨디션 나쁠 때</div>
-<div class="backup-text">1) 티엔즈팡 체류 최소화 2) 신천지 쇼핑 생략</div>
-</div>
-</div>
-</div>
-<!-- 저녁 -->
-<div class="schedule-section">
+</div><div class="schedule-section"><div class="time-label">오후</div><div class="schedule-card"><div class="place-item"><div class="place-header"><div class="place-name">🏛️ 대한민국 임시정부 청사 - 上海大韩民国临时政府旧址</div><div class="map-buttons"><a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Former+Site+of+the+Provisional+Government+of+the+Republic+of+Korea+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a><a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="Former Site of the Provisional Government of the Republic of Korea Shanghai" data-web-href="https://uri.amap.com/search?keyword=Former%20Site%20of%20the%20Provisional%20Government%20of%20the%20Republic%20of%20Korea%20Shanghai" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a></div></div></div><div class="place-item"><div class="place-header"><div class="place-name">🏙️ 신천지 - 新天地</div><div class="map-buttons"><a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Xintiandi+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a><a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="Xintiandi Shanghai" data-web-href="https://uri.amap.com/search?keyword=Xintiandi%20Shanghai" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a></div></div></div><div class="place-item"><div class="place-header"><div class="place-name">🎨 티엔즈팡 - 田子坊</div><div class="map-buttons"><a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Tianzifang+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a><a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="Tianzifang Shanghai" data-web-href="https://uri.amap.com/search?keyword=Tianzifang%20Shanghai" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a></div></div></div></div></div><div class="schedule-section">
 <div class="time-label">
 <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -1013,21 +902,21 @@
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">🥟 大壶春 Dahuchun (생전포)</span>
+<span class="meal-name">🥟 大壶春 Dahuchun - 생전포</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Dahuchun+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="大壶春 上海" data-web-href="https://uri.amap.com/search?keyword=%E5%A4%A7%E5%A3%B6%E6%98%A5%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">🥟 来来小笼 (샤오롱바오)</span>
+<span class="meal-name">🥟 来来小笼 - 샤오롱바오</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%A5%E6%9D%A5%E5%B0%8F%E7%AC%BC+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="来来小笼 上海" data-web-href="https://uri.amap.com/search?keyword=%E6%9D%A5%E6%9D%A5%E5%B0%8F%E7%AC%BC%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">🍝 BOTTEGA Fratelli Salvo (Jing'an)</span>
+<span class="meal-name">🍝 BOTTEGA Fratelli Salvo - Jing'an</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=BOTTEGA+Fratelli+Salvo+Jing%27an+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="BOTTEGA Fratelli Salvo 静安店 陕西北路457号" data-web-href="https://uri.amap.com/search?keyword=BOTTEGA%20Fratelli%20Salvo%20%E9%9D%99%E5%AE%89%E5%BA%97%20%E9%99%95%E8%A5%BF%E5%8C%97%E8%B7%AF457%E5%8F%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
@@ -1035,13 +924,10 @@
 </li>
 </ul>
 </div>
-<div class="backup-section">
-<div class="backup-title">😴 컨디션 나쁠 때</div>
-<div class="backup-text">3) 저녁 후 추가 야간 이동 생략</div>
 </div>
-</div>
-</div>
-</div>
+</div></div>
+<!-- 저녁 -->
+
 </section>
 <!-- DAY 4 -->
 <section class="day-panel" id="day-4" role="tabpanel">
@@ -1049,8 +935,7 @@
 <h2 class="day-title">1명 귀국 · 예원 · 난징동루</h2>
 <p class="day-summary">예원/다이마루/양꼬치</p>
 </div>
-<div class="schedule-grid">
-<div class="schedule-section">
+<div class="schedule-grid"><div class="schedule-section">
 <div class="time-label">
 <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <circle cx="12" cy="12" r="10"></circle>
@@ -1061,15 +946,11 @@
 <div class="schedule-card">
 <div class="place-item">
 <div class="place-name">✈️ 귀국자 출발</div>
-
 </div>
-<div class="place-item"><div class="place-header"><div class="place-name">🏯 예원 (豫园)</div><div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🏯 예원 - 豫园</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Yu+Garden+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="豫园 Shanghai" data-web-href="https://uri.amap.com/search?keyword=%E8%B1%AB%E5%9B%AD%20Shanghai" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div></div>
-
-
-
 <div class="meal-section">
 <div class="meal-title">🍽️ 예원 근처 점심</div>
 <ul class="meal-list">
@@ -1081,7 +962,7 @@
 </div>
 </li>
 <li class="meal-item">
-<span class="meal-name">🥟 来来小笼</span>
+<span class="meal-name">🥟 来来小笼 (라이라이 샤오롱 - 소롱포)</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%A5%E6%9D%A5%E5%B0%8F%E7%AC%BC+Yu+Garden+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="来来小笼 豫园 上海" data-web-href="https://uri.amap.com/search?keyword=%E6%9D%A5%E6%9D%A5%E5%B0%8F%E7%AC%BC%20%E8%B1%AB%E5%9B%AD%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
@@ -1091,8 +972,7 @@
 </div>
 </div>
 </div>
-</div>
-<div class="schedule-section">
+</div><div class="schedule-section">
 <div class="time-label">
 <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <circle cx="12" cy="12" r="5"></circle>
@@ -1104,16 +984,9 @@
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Nanjing+Road+Pedestrian+Street" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="南京路步行街" data-web-href="https://uri.amap.com/search?keyword=%E5%8D%97%E4%BA%AC%E8%B7%AF%E6%AD%A5%E8%A1%8C%E8%A1%97" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div></div>
-
-
-</div>
-<div class="backup-section">
-<div class="backup-title">😴 컨디션 나쁠 때</div>
-<div class="backup-text">예원상성 쇼핑 생략</div>
 </div>
 </div>
-</div>
-<div class="schedule-section">
+</div><div class="schedule-section">
 <div class="time-label">
 <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -1125,14 +998,11 @@
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=830+Nanjinglu+St+Huangpu+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="830 Nanjinglu Huangpu 第一百货 B馆 6层" data-web-href="https://uri.amap.com/search?keyword=830%20Nanjinglu%20Huangpu%20%E7%AC%AC%E4%B8%80%E7%99%BE%E8%B4%A7%20B%E9%A6%86%206%E5%B1%82" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div></div>
-
-
-
 <div class="meal-section">
 <div class="meal-title">🍽️ 저녁 대안</div>
 <ul class="meal-list">
 <li class="meal-item">
-<span class="meal-name">🥟 点都德</span>
+<span class="meal-name">🥟 点都德 (딤도덕 - 딤섬)</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=%E7%82%B9%E9%83%BD%E5%BE%B7+Huangpu+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="点都德 黄浦 上海" data-web-href="https://uri.amap.com/search?keyword=%E7%82%B9%E9%83%BD%E5%BE%B7%20%E9%BB%84%E6%B5%A6%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
@@ -1147,14 +1017,10 @@
 </li>
 </ul>
 </div>
-<div class="backup-section">
-<div class="backup-title">😴 컨디션 나쁠 때</div>
-<div class="backup-text">저녁 외식 생략하고 휴식</div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</div></div>
+
 </section>
 <!-- DAY 5 -->
 <section class="day-panel" id="day-5" role="tabpanel">
@@ -1162,8 +1028,7 @@
 <h2 class="day-title">주가각 · 구베이</h2>
 <p class="day-summary">주가각 → Bellagio → 갤러리아 → Shi No.6</p>
 </div>
-<div class="schedule-grid">
-<div class="schedule-section">
+<div class="schedule-grid"><div class="schedule-section">
 <div class="time-label">
 <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <circle cx="12" cy="12" r="10"></circle>
@@ -1176,17 +1041,9 @@
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Zhujiajiao+Ancient+Town" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="朱家角古镇" data-web-href="https://uri.amap.com/search?keyword=%E6%9C%B1%E5%AE%B6%E8%A7%92%E5%8F%A4%E9%95%87" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div></div>
-
-
-
-</div>
-<div class="backup-section">
-<div class="backup-title">😴 컨디션 나쁠 때</div>
-<div class="backup-text">주가각 체류 축소</div>
 </div>
 </div>
-</div>
-<div class="schedule-section">
+</div><div class="schedule-section">
 <div class="time-label">
 <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <circle cx="12" cy="12" r="5"></circle>
@@ -1198,24 +1055,14 @@
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Bellagio+Cafe+778+Huangjincheng+Ave+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="778 Huangjincheng Ave Bellagio Cafe Shanghai" data-web-href="https://uri.amap.com/search?keyword=778%20Huangjincheng%20Ave%20Bellagio%20Cafe%20Shanghai" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div></div>
-
-
-
 </div>
-<div class="place-item"><div class="place-header"><div class="place-name">🛒 Galleria (구베이/코리아타운)</div><div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🛒 Galleria - 구베이/코리아타운</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=Galleria+Shanghai+Koreatown" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="古北 加乐利亚 上海" data-web-href="https://uri.amap.com/search?keyword=%E5%8F%A4%E5%8C%97%20%E5%8A%A0%E4%B9%90%E5%88%A9%E4%BA%9A%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div></div>
-
-
-</div>
-<div class="backup-section">
-<div class="backup-title">😴 컨디션 나쁠 때</div>
-<div class="backup-text">갤러리아 10분 컷</div>
 </div>
 </div>
-</div>
-<div class="schedule-section">
+</div><div class="schedule-section">
 <div class="time-label">
 <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -1223,18 +1070,15 @@
                         저녁
                     </div>
 <div class="schedule-card">
-<div class="place-item"><div class="place-header"><div class="place-name">🦞 Shi No.6 (랍스터 그릴)</div><div class="map-buttons">
+<div class="place-item"><div class="place-header"><div class="place-name">🦞 Shi No.6 - 랍스터 그릴</div><div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=1482-1+Hongqiao+Rd+Changning+Shanghai+lobster+grill" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="1482-1 Hongqiao Rd Changning lobster grill" data-web-href="https://uri.amap.com/search?keyword=1482-1%20Hongqiao%20Rd%20Changning%20lobster%20grill" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
 </div></div>
-
-
-
 <div class="meal-section">
 <div class="meal-title">🍽️ 저녁 대안</div>
 <ul class="meal-list">
 <li class="meal-item">
-<span class="meal-name">🥟 点都德</span>
+<span class="meal-name">🥟 点都德 (딤도덕 - 딤섬)</span>
 <div class="map-buttons">
 <a aria-label="Google Maps" class="map-btn map-google" href="https://www.google.com/maps/search/?api=1&amp;query=%E7%82%B9%E9%83%BD%E5%BE%B7+Changning+Shanghai" target="_blank"><img alt="Google Maps" src="googlemaps.jpeg"/></a>
 <a aria-label="AMap" class="map-btn map-amap" data-amap-keyword="点都德 长宁 上海" data-web-href="https://uri.amap.com/search?keyword=%E7%82%B9%E9%83%BD%E5%BE%B7%20%E9%95%BF%E5%AE%81%20%E4%B8%8A%E6%B5%B7" href="#" target="_blank"><img alt="Amap" src="amap.webp"/></a>
@@ -1249,14 +1093,11 @@
 </li>
 </ul>
 </div>
-<div class="backup-section">
-<div class="backup-title">😴 컨디션 나쁠 때</div>
-<div class="backup-text">저녁 후 2차 이동 생략</div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</div></div>
+
+
 </section>
 <!-- DAY 6 -->
 <section class="day-panel" id="day-6" role="tabpanel">
@@ -1291,10 +1132,6 @@
 <div class="place-item">
 <div class="place-name">✈️ PVG 14:25 → ICN 17:25</div>
 <div class="place-desc">MU8603 · 4/21</div>
-</div>
-<div class="backup-section">
-<div class="backup-title">😴 컨디션 나쁠 때</div>
-<div class="backup-text">당일 관광/쇼핑 생략</div>
 </div>
 </div>
 </div>
