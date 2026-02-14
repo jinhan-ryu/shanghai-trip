@@ -96,43 +96,6 @@
             margin-top: 2px;
         }
 
-        /* Settings Dropdown */
-        .settings-container {
-            position: relative;
-        }
-
-        /* Font Size Toggle Button */
-        .font-size-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius);
-            background: var(--color-card);
-            color: var(--color-text);
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-            font-size: 0.875rem;
-            position: relative;
-        }
-
-        .font-size-toggle:hover {
-            background: var(--color-bg);
-        }
-
-        .font-size-toggle svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .font-size-icon {
-            display: flex;
-            align-items: center;
-            gap: 1px;
-        }
 
         /* Tab Navigation */
         .tab-nav {
@@ -488,37 +451,31 @@
                     <h1 class="trip-title">🇨🇳 상하이 여행</h1>
                     <p class="trip-date">2025.2.16 (일) — 2.21 (금) · 5박 6일</p>
                 </div>
-                <button class="font-size-toggle" id="fontSizeToggle" aria-label="텍스트 크기 조절">
-                    <span class="font-size-icon" id="fontSizeIcon">
-                        <span style="font-size: 16px; font-weight: 600;">T</span>
-                        <span style="font-size: 12px; font-weight: 600;">+</span>
-                    </span>
-                </button>
             </div>
             <nav class="tab-nav" role="tablist">
                 <button class="tab-btn active" role="tab" data-day="1" aria-selected="true">
-                    <span class="day-label">DAY 1</span>
-                    <span class="day-date">2/16 일</span>
+                    <span class="day-label">2/16 일</span>
+                    <span class="day-date">Day 1</span>
                 </button>
                 <button class="tab-btn" role="tab" data-day="2" aria-selected="false">
-                    <span class="day-label">DAY 2</span>
-                    <span class="day-date">2/17 월</span>
+                    <span class="day-label">2/17 월</span>
+                    <span class="day-date">Day 2</span>
                 </button>
                 <button class="tab-btn" role="tab" data-day="3" aria-selected="false">
-                    <span class="day-label">DAY 3</span>
-                    <span class="day-date">2/18 화</span>
+                    <span class="day-label">2/18 화</span>
+                    <span class="day-date">Day 3</span>
                 </button>
                 <button class="tab-btn" role="tab" data-day="4" aria-selected="false">
-                    <span class="day-label">DAY 4</span>
-                    <span class="day-date">2/19 수</span>
+                    <span class="day-label">2/19 수</span>
+                    <span class="day-date">Day 4</span>
                 </button>
                 <button class="tab-btn" role="tab" data-day="5" aria-selected="false">
-                    <span class="day-label">DAY 5</span>
-                    <span class="day-date">2/20 목</span>
+                    <span class="day-label">2/20 목</span>
+                    <span class="day-date">Day 5</span>
                 </button>
                 <button class="tab-btn" role="tab" data-day="6" aria-selected="false">
-                    <span class="day-label">DAY 6</span>
-                    <span class="day-date">2/21 금</span>
+                    <span class="day-label">2/21 금</span>
+                    <span class="day-date">Day 6</span>
                 </button>
             </nav>
         </div>
@@ -568,13 +525,13 @@
                                     Google
                                 </a>
                                 <a href="https://uri.amap.com/search?keyword=%E6%96%B0%E4%B8%96%E7%95%8C%E5%A4%A7%E4%B8%B8%E7%99%BE%E8%B4%A7%20%E4%B8%8A%E6%B5%B7" target="_blank" class="map-btn">
-                                    <img src="https://play-lh.googleusercontent.com/D5lBJpKnOSAnJLj6TEKG1G7CsGRSfzPBfFAJWmXQwnOIldjAUG3P5_yMkPlJBuOw5nY=w240-h480-rw" alt="Amap">
+                                    <img src="amap.webp" alt="Amap">
                                     Amap
                                 </a>
                             </div>
                         </div>
                         <div class="place-item">
-                            <div class="place-name">🛍️ 난징동루 보행가</div>
+                            <div class="place-name">🛍️ 난징동루 거리</div>
                             <div class="map-buttons">
                                 <a href="https://www.google.com/maps/search/?api=1&query=Nanjing+Road+Pedestrian+Street" target="_blank" class="map-btn">
                                     <img src="googlemaps.jpeg" alt="Google Maps">
@@ -1527,22 +1484,6 @@
             });
         });
 
-        // Font Size Toggle
-        const fontSizeToggle = document.getElementById('fontSizeToggle');
-        const fontSizeIcon = document.getElementById('fontSizeIcon');
-        
-        fontSizeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('font-large');
-            
-            if (document.body.classList.contains('font-large')) {
-                // 텍스트 크게 상태 -> 작게 아이콘으로 변경
-                fontSizeIcon.innerHTML = '<span style="font-size: 16px; font-weight: 600;">T</span><span style="font-size: 12px; font-weight: 600;">-</span>';
-            } else {
-                // 텍스트 작게 상태 -> 크게 아이콘으로 변경
-                fontSizeIcon.innerHTML = '<span style="font-size: 16px; font-weight: 600;">T</span><span style="font-size: 12px; font-weight: 600;">+</span>';
-            }
-        });
-
 
         // Header scroll behavior
         const header = document.getElementById('header');
@@ -1587,35 +1528,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Swipe navigation for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) < swipeThreshold) return;
-            
-            const currentTab = document.querySelector('.tab-btn.active');
-            const tabs = Array.from(tabBtns);
-            const currentIndex = tabs.indexOf(currentTab);
-            
-            if (diff > 0 && currentIndex < tabs.length - 1) {
-                tabs[currentIndex + 1].click();
-            } else if (diff < 0 && currentIndex > 0) {
-                tabs[currentIndex - 1].click();
-            }
-        }
     </script>
 </body>
 </html>
